@@ -1,0 +1,6 @@
+[workspace]
+
+members = [
+    "inventory-service",
+    "base-service",
+]
