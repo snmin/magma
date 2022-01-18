@@ -1,7 +1,7 @@
 <img width = "50%" src="logo/default.png">
 
 
-[![Rust](https://github.com/MagmaERP/magma-services/actions/workflows/rust.yml/badge.svg?branch=master)](https://github.com/MagmaERP/magma-services/actions/workflows/rust.yml)&nbsp;&nbsp;![Discord](https://img.shields.io/discord/898797518190698538)&nbsp;&nbsp;
+[![Rust](https://github.com/Hypermind-Logistics/magma/actions/workflows/rust.yml/badge.svg?branch=master&event=push)](https://github.com/Hypermind-Logistics/magma/actions/workflows/rust.yml)(https://github.com/Hypermind-Logistics/magma/actions/workflows/rust.yml)(https://github.com/MagmaERP/magma-services/actions/workflows/rust.yml)&nbsp;&nbsp;![Discord](https://img.shields.io/discord/898797518190698538)&nbsp;&nbsp;
 
 
 # Magma

@@ -1,5 +1,5 @@
 [package]
-name = "inventory-service"
+name = "internals-service"
 version = "0.1.0"
 edition = "2018"
 
