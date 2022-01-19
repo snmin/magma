@@ -11,3 +11,5 @@ async-graphql-warp = "2.10.3"
 tokio = { version = "1.0.2", features = ["macros", "rt-multi-thread"] }
 warp = "0.3"
 sea-orm = { version = "^0", features = [ "sqlx-postgres", "runtime-tokio-rustls", "macros" ], default-features = false }
+serde = { version = "1.0", features = ["derive"] }
+uuid = "0.8.2"
