@@ -1,33 +1,16 @@
 
 mod gql;
 
-use sea_orm::DatabaseConnection;
-use sea_orm::Database;
-use sea_orm::ConnectOptions;
 use async_graphql::{EmptyMutation, EmptySubscription, Object, Schema, SimpleObject, ID};
 use async_graphql_warp::graphql;
 use gql::service::Query;
 use std::convert::Infallible;
-use std::time::Duration;
 use warp::{Filter, Reply};
 
 
 #[tokio::main]
 async fn main() {
-
-    let mut opt = ConnectOptions::new("protocol://username:password@host/database".to_owned());
-    opt.max_connections(100)
-        .min_connections(5)
-        .connect_timeout(Duration::from_secs(8))
-        .idle_timeout(Duration::from_secs(8))
-        .sqlx_logging(true);
-    
-    let db = Database::connect(opt).await;
-    
-    let schema = Schema::build(Query, EmptyMutation, EmptySubscription)
-    .data(db)
-    .finish();
-
+    let schema = Schema::new(Query, EmptyMutation, EmptySubscription);
 
     warp::serve(graphql(schema).and_then(
         |(schema, request): (
