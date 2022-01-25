@@ -1,7 +1,3 @@
-mod gql;
-mod models;
-mod entity;
-
 use sea_orm::DatabaseConnection;
 use sea_orm::Database;
 use sea_orm::ConnectOptions;
@@ -12,6 +8,9 @@ use std::convert::Infallible;
 use std::time::Duration;
 use warp::{Filter, Reply};
 
+mod gql;
+mod models;
+mod entity;
 
 #[tokio::main]
 async fn main() {

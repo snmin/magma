@@ -1,10 +1,14 @@
 use std::result;
 
 use async_graphql::*;
-use sea_orm::QuerySelect;
+use sea_orm::{QuerySelect, DbErr};
 use sea_orm::{DatabaseConnection, EntityTrait};
 use serde::{Serialize, Deserialize};
 use uuid::*;
+
+
+use sea_orm::{entity::*, query::*, tests_cfg::cake, DeriveColumn, EnumIter};
+use warp::log;
 
 use crate::entity::products::Entity as ProductEntity;
 use crate::entity::products::Model as ProductModel;
@@ -34,17 +38,15 @@ impl Product {
         
         let db_conn = ctx.data::<DatabaseConnection>().expect("Failed to secure db connection");
         
-        let model = ProductEntity::find_by_id(self.product_id)
-        .column(ProductColumns::Id)
-        .one(db_conn)
-        .await;
-
-
-
-
+        let result = 
+        ProductEntity::find_by_id(self.product_id)
+            .select_only()
+            .column(ProductColumns::Id)
+            .one(db_conn)
+            .await?;
         
-
-        return 3;
+        
+        Ok(ProductModel::from(result.unwrap()).id)
     }
 
 }
