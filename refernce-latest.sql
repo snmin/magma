@@ -1,4 +1,10 @@
 -- Add migration script here
+CREATE DATABASE magma 
+WITH 
+    OWNER = magma;
+
+USE magma;
+
 CREATE SCHEMA inventory (
     CREATE TABLE products (
         id SERIAL NOT NULL

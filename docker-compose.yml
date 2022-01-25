@@ -1,20 +1,21 @@
 version: '3.8'
 
+
 services:
   postgresql-master:
     image: docker.io/bitnami/postgresql:11
     ports:
-      - '5432'
+      - '5432:5432'
     volumes:
       - 'postgresql_master_data:/bitnami/postgresql'
     environment:
       - POSTGRESQL_REPLICATION_MODE=master
       - POSTGRESQL_REPLICATION_USER=repl_user
       - POSTGRESQL_REPLICATION_PASSWORD=repl_password
-      - POSTGRESQL_USERNAME=postgres
-      - POSTGRESQL_PASSWORD=my_password
-      - POSTGRESQL_DATABASE=my_database
-      - ALLOW_EMPTY_PASSWORD=yes
+      - POSTGRESQL_USERNAME=hypermind
+      - POSTGRESQL_PASSWORD=magma.service.postgres
+      - POSTGRESQL_DATABASE=magma
+      - ALLOW_EMPTY_PASSWORD=no
   postgresql-slave:
     image: docker.io/bitnami/postgresql:11
     ports:
@@ -25,10 +26,13 @@ services:
       - POSTGRESQL_REPLICATION_MODE=slave
       - POSTGRESQL_REPLICATION_USER=repl_user
       - POSTGRESQL_REPLICATION_PASSWORD=repl_password
+      - POSTGRESQL_PASSWORD=magma.service.postgres
       - POSTGRESQL_MASTER_HOST=postgresql-master
-      - POSTGRESQL_PASSWORD=my_password
       - POSTGRESQL_MASTER_PORT_NUMBER=5432
-      - ALLOW_EMPTY_PASSWORD=yes
+      - ALLOW_EMPTY_PASSWORD=no
+    deploy:
+      mode: replicated
+      replicas: 6
 
 volumes:
   postgresql_master_data:

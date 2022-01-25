@@ -1,5 +1,6 @@
-
 mod gql;
+mod models;
+mod entity;
 
 use sea_orm::DatabaseConnection;
 use sea_orm::Database;
@@ -15,7 +16,7 @@ use warp::{Filter, Reply};
 #[tokio::main]
 async fn main() {
 
-    let mut opt = ConnectOptions::new("protocol://username:password@host/database".to_owned());
+    let mut opt = ConnectOptions::new("postgresql://postgres:magma@localhost/magma".to_owned());
     opt.max_connections(100)
         .min_connections(5)
         .connect_timeout(Duration::from_secs(8))

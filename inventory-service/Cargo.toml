@@ -13,3 +13,5 @@ warp = "0.3"
 sea-orm = { version = "^0", features = [ "sqlx-postgres", "runtime-tokio-rustls", "macros" ], default-features = false }
 serde = { version = "1.0", features = ["derive"] }
 uuid = { version = "0.8", features = ["serde", "v4"] }
+dotenv = "0.15.0"
+dotenv_codegen = "0.15.0"
