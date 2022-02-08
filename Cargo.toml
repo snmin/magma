@@ -3,6 +3,6 @@
 members = [
     "inventory-service",
     "base-service",
-    "employee-service",
+    "humans-service",
     "internals-service",
 ]

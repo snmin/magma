@@ -10,12 +10,12 @@ use warp::{Filter, Reply};
 
 mod gql;
 mod models;
-mod entity;
+mod entitys;
 
 #[tokio::main]
 async fn main() {
 
-    let mut opt = ConnectOptions::new("postgresql://postgres:magma@localhost/magma".to_owned());
+    let mut opt = ConnectOptions::new("postgresql://hypermind:magma.service.postgres@localhost/magma".to_owned());
     opt.max_connections(100)
         .min_connections(5)
         .connect_timeout(Duration::from_secs(8))

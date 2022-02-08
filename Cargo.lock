@@ -474,17 +474,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e78d4f1cc4ae33bbfc157ed5d5a5ef3bc29227303d595861deb238fcec4e9457"
 
 [[package]]
-name = "employee-service"
-version = "0.1.0"
-dependencies = [
- "async-graphql",
- "async-graphql-warp",
- "sea-orm",
- "tokio",
- "warp",
-]
-
-[[package]]
 name = "encoding_rs"
 version = "0.8.30"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -774,6 +763,17 @@ name = "httpdate"
 version = "1.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c4a1e36c821dbe04574f602848a19f742f4fb3c98d40449f11bcad18d6b17421"
+
+[[package]]
+name = "humans-service"
+version = "0.1.0"
+dependencies = [
+ "async-graphql",
+ "async-graphql-warp",
+ "sea-orm",
+ "tokio",
+ "warp",
+]
 
 [[package]]
 name = "hyper"

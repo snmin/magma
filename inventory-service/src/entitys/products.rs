@@ -22,6 +22,7 @@ pub struct Model {
     pub magma_info: Option<Json>,
 }
 
+
 #[derive(Copy, Clone, Debug, EnumIter)]
 pub enum Relation {}
 

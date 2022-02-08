@@ -1,32 +1,27 @@
-use async_graphql::{EmptyMutation, EmptySubscription, Object, Schema, SimpleObject, ID};
+use async_graphql::*;
 use async_graphql_warp::graphql;
-use std::convert::Infallible;
+use sea_orm::{DatabaseConnection, EntityTrait};
+use std::{convert::Infallible};
 use warp::{Filter, Reply};
 
-#[derive(SimpleObject)]
-struct User {
-    id: ID,
-    username: String,
-}
 
+use crate::entitys::products::Entity as ProductEntity;
+
+use crate::entitys::products::{Column as ProductColumns, Model as ProductModel};
+use crate::models::product::Product;
+
+
+#[derive(Default)]
 pub struct Query;
 
 #[Object]
 impl Query {
-    async fn me(&self) -> User {
-        User {
-            id: "c".into(),
-            username: "t".to_string(),
-        }
-    }
+    async fn get_product(&self, ctx: &Context<'_>, product_id: i32) -> Result<ProductModel> {
+        
+        let db_conn = ctx.data::<DatabaseConnection>().expect("Failed to secure db connection");
+        
+        let result = ProductEntity::find_by_id(product_id).one(db_conn).await?;
 
-    #[graphql(entity)]
-    async fn find_user_by_id(&self, id: ID) -> User {
-        let username = if id == "1234" {
-            "Me".to_string()
-        } else {
-            format!("User {:?}", id)
-        };
-        User { id, username }
+        Ok(result.unwrap())
     }
 }
